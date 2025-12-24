@@ -16,7 +16,7 @@ dotenv.config();
 const app = express();
 
 // Middlewares
-app.use(cors({ origin: "http://localhost:5173" }));             // Allow frontend requests
+app.use(cors({ origin: "https://pos-project-1.onrender.com" }));             // Allow frontend requests
 app.use(express.json());    // JSON parsing
 
 // Connect Database
