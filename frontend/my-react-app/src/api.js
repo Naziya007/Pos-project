@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "https://pos-project-goif.onrender.com", // replace with your backend URL
+  baseURL: "https://pos-project-5.onrender.com", // replace with your backend URL
 });
 // Attach token automatically
 API.interceptors.request.use((req) => {
