@@ -16,7 +16,24 @@ dotenv.config();
 const app = express();
 
 // Middlewares
-app.use(cors({ origin: "https://pos-project-1.onrender.com" }));             // Allow frontend requests
+const allowedOrigins = [
+  "http://localhost:5173",                 // local dev
+  "https://pos-project-1.onrender.com" // deployed frontend
+ // deployed frontend" // deployed frontend
+];
+
+// Middlewares
+app.use(cors({
+  origin: function(origin, callback) {
+    if (!origin) return callback(null, true); // allow Postman or server-to-server requests
+    if (allowedOrigins.indexOf(origin) === -1) {
+      const msg = `The CORS policy does not allow access from the specified Origin.`;
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  },
+  credentials: true // allow cookies if needed
+}));         // Allow frontend requests
 app.use(express.json());    // JSON parsing
 
 // Connect Database
